@@ -28,8 +28,9 @@ namespace MoodAnalyzerProblem
                 }
             }catch(NullReferenceException ex)
             {
-                Console.WriteLine(ex.Message);
-                return default;
+               // Console.WriteLine(ex.Message);
+               // return default;
+                throw new InvalidCustomException("Message should not be null",InvalidCustomException.ExceptionTypes.NULL_MESSAGE);
             }
         }
     }

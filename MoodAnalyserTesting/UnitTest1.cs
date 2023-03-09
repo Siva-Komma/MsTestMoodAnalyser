@@ -28,5 +28,19 @@ namespace MoodAnalyserTesting
                 Assert.AreEqual(expected, ex.Message);
             }
         }
+        [TestMethod]
+        public void CustomException()
+        {
+            string expected = "Message should not be null";
+            try
+            {
+                string message = null;
+                ModdAnalyzer moodAnalyser = new ModdAnalyzer(message);
+                string actual = moodAnalyser.AnalyseMood();
+            }catch(InvalidCustomException ex)
+            {
+                Assert.AreEqual(expected, ex.Message);
+            }
+        }
     }
 }
