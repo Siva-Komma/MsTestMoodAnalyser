@@ -7,23 +7,26 @@ namespace MoodAnalyserTesting
     [TestClass]
     public class UnitTest1
     {
-        ModdAnalyzer moodAnalyser = new ModdAnalyzer();
         [TestMethod]
-        public void GivenSadMood_WhenAnalysed_ShouldReturnSad()
+        [TestCategory("ExceptionTestCase")]
+        [DataRow("I am in Happy Mood", "Happy")]
+        [DataRow("I am in Sad Mood", "Sad")]
+        [DataRow(null, "Object reference not set to an instance of an object.")]
+        public void MessageShouldReturn_TypeofMood(string message,string expected)
         {
-            string result = moodAnalyser.AnalyseMood("I am in Sad Mood");
-            if (result != null)
+            try
             {
-                Assert.AreEqual(result, "Sad");
+                ModdAnalyzer moodAnalyser = new ModdAnalyzer(message);
+                string result = moodAnalyser.AnalyseMood();
+                if (result != null)
+                {
+                    Assert.AreEqual(result, expected);
+                }
+                Console.WriteLine(result);
+            }catch(Exception ex)
+            {
+                Assert.AreEqual(expected, ex.Message);
             }
-            Console.WriteLine(result);
-        }
-        [TestMethod]
-        public void GivenSadMood_WhenAnalysed_ShouldReturnHappy()
-        {
-            string result = moodAnalyser.AnalyseMood("I am in Happy Mood");
-            Assert.AreEqual(result, "Happy");
-            Console.WriteLine(result);
         }
     }
 }
