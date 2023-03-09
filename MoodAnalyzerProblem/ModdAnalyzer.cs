@@ -9,7 +9,7 @@ namespace MoodAnalyzerProblem
 {
     public class ModdAnalyzer
     {
-        string message;
+        public  string message;
         public ModdAnalyzer(string message)
         {
             this.message = message;
